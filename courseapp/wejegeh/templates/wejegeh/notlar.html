@@ -1,0 +1,37 @@
+{% extends 't_wejegeh.html' %}
+{% load static %}
+{% block title %}<title>Program</title>{% endblock title %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock css_files %}
+    
+{% block js_alani %}  <script src="{% static 'js/mywejegeh.js' %}"></script>{% endblock js_alani %}
+
+{% block orta_alan %}  
+<a class="text-center " href="http://127.0.0.1:8000/admin/wejegeh/notlar/add/"><div class="col-12 fw-bold text-dark mt-3">NOT EKLE</div></a>
+
+{% for entry in  notlar%}
+<div class="row mt-3 mb-3 border border-dark border-2">
+    <div style="background-color:#{{entry.detay.renkcode}};" class="col-12  ">
+        <div class="row">
+            <div class="col-12 fw-bold">{{entry.başlık|linebreaks|urlize}}</div> 
+            <div class="col-12">{{entry.notekle|linebreaks|urlize}}</div>
+            <div class="col-6 bg-white text-center  border border-dark p-0">
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{ entry.id }}">
+                    <button class="container-fluid" type="submit">YAPILDI</button>
+                </form>
+            </div>
+            <div class="col-6 text-dark text-center fw-bold bg-white border-dark border"><a class="" href="http://127.0.0.1:8000/admin/wejegeh/notlar/{{ entry.id }}/change/">DÜZENLE</a></div>
+           
+            
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+
+{% endblock orta_alan %}

@@ -1,0 +1,53 @@
+{% extends 't_wejegeh.html' %}
+{% load static %}
+{% block title %}<title>Program</title>{% endblock title %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock css_files %}
+    
+{% block js_alani %}  <script src="{% static 'js/mywejegeh.js' %}"></script>{% endblock js_alani %}
+
+{% block orta_alan %}  
+
+
+<div class="row mt-3 mb-3">
+    <div class="col-3 fw-bold ">Kategori</div>
+    <div class="col-3 fw-bold ">Son Ödeme</div>
+    <div class="col-2 fw-bold">Tutar</div>
+    <div class="col-2 fw-bold">Kalan Gün</div>
+    <div class="col-2 fw-bold">Detay</div>
+
+</div>
+
+
+<form  method="POST">
+    {% csrf_token %}
+
+<div class="row" >
+   
+    {% for i in düzensizödeme %}
+    <div style="background-color:#{{i.renk}};" class="col-3 mt-1  border ">{{i.kategori}}</div>
+    <div style="background-color:#{{i.renk}};" class="col-3 mt-1  border">{{i.ödemeson}}</div>
+    <div style="background-color:#{{i.renk}};" class="col-2 mt-1  border">{{i.tutar}}</div>
+    <div style="background-color:#{{i.renk}};" class="col-2 mt-1  border">
+        <div class="row">
+            <div class="col-6">{{i.kalangün}}</div>
+            <div class="col-6"><input type="checkbox" name="selected_action" value="{{i.id}}" class="action-select"></div>
+        </div>
+    </div>
+    <div style="background-color:#{{i.renk}};" class="col-2 mt-1  border text-center">
+        <a class="text-dark fw-bold" href="{% url 'düzensizedetay' id=i.id %}">Detay</a>
+
+    </div>
+    {% endfor %}
+    <input class="col-6 mt-3 bg-success " type="submit" value="Kaydet">
+    <a  class="col-6 mt-3 bg-warning text-center border text-dark" href="http://127.0.0.1:8000/admin/wejegeh/d%C3%BCzensize/add/">Yeni Kayıt</a>    
+</div>
+
+</form>
+<div class="row">
+    <div class="mt-3 bg-secondary col-12 text-center fw-bold border border-dark">Toplam Tutar: {{eren}}</div>
+</div>
+
+{% endblock orta_alan %}

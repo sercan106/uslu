@@ -1,0 +1,85 @@
+{% extends 't_wejegeh.html' %}
+{% load static %}
+{% block title %}<title>Mihenk taşı</title>{% endblock title %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock css_files %}
+    
+{% block js_alani %}  <script src="{% static 'js/mywejegeh.js' %}"></script>{% endblock js_alani %}
+
+{% block orta_alan %}  
+
+ <div class="row p-2">
+    <a href="http://127.0.0.1:8000/admin/wejegeh/gıda/add/" class="col-lg-4 col-12 mt-2  btn btn-primary">Gıda Gideri Ekle</a>
+    <a href="http://127.0.0.1:8000/admin/wejegeh/fatura/add/" class="col-lg-4 col-12 mt-2  btn btn-success">Fatura Gideri Ekle</a>
+    <a href="http://127.0.0.1:8000/admin/wejegeh/di%C4%9Fer/add/" class="col-lg-4 col-12 mt-2  btn btn-primary">Diğer Gider Ekle</a>
+    
+ </div>
+
+
+<div class="container">
+    <div class="row ">
+        <div class="border border-dark bg-secondary col-4">Aylık Gıda Toplam : {{gıda_toplam}}</div>
+        <div class="border border-dark bg-secondary col-4">Aylık Fatura Toplam : {{fatura_toplam}}</div>
+        <div class="border border-dark bg-secondary col-4">Aylık Diğer Toplam : {{diger_toplam}}</div>
+        <div class="fw-bold text-center border border-dark bg-secondary col-12">AYLIK GENEL TOPLAM : {{toplam}}</div>
+
+    </div>
+</div>
+
+
+
+<div class="div container">
+    <div class="row mt-2 bg-success rounded border border-dark">
+        <div class="col-6 border   text-center">
+            <a class="text-white" href="{% url 'harcama' kategori='Ev' %}">Ev Detay</a>
+        </div>
+
+        <div class="col-6 border  text-center ">
+            <a class="text-white" href="{% url 'harcama' kategori='Sercan' %}">Sercan Detay</a>
+        </div>
+
+        <div class="col-6 border  text-center ">
+            <a class="text-white " href="{% url 'harcama' kategori='Mehmet' %}">Mehmet Detay</a>
+        </div>
+
+        <div class="col-6 border  text-center">
+            <a class="text-white" href="{% url 'harcama' kategori='Eren' %}">Eren Detay</a>
+        </div>
+
+
+        <div class="dropdown p-0">
+            <button class="btn btn-primary dropdown-toggle fw-bold col-12 ps-0 pe-0 pt-2 pb-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Daha Fazla Detay
+            </button>
+            <ul class="dropdown-menu col-12 text-center bg-primary" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="http://127.0.0.1:8000/admin/wejegeh/g%C4%B1da/">Gıda Detay</a></li>
+              <li><a class="dropdown-item" href="http://127.0.0.1:8000/admin/wejegeh/fatura/">Fatura Detay</a></li>
+              <li><a class="dropdown-item" href="http://127.0.0.1:8000/admin/wejegeh/di%C4%9Fer/">Diğer Detay</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<h3 class="mt-3 text-center border-bottom border-dark">Tarihsel Veriler</h3>
+<ul>
+    {% for item in tarihsel_veriler %}
+        <p class="text-center">{{ item.tarih }} - {{ item.kategorisi.başlık }}  - {{ item.tutar }}</p>
+    {% endfor %}
+</ul>
+
+
+{% endblock orta_alan %}
+
+
+
+
+
+
+
+

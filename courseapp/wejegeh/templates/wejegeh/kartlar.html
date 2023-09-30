@@ -1,0 +1,52 @@
+{% extends 't_wejegeh.html' %}
+{% load static %}
+{% block title %}<title>USLU</title>{% endblock title %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock css_files %}
+    
+{% block js_alani %}  
+<script src="{% static 'js/mywejegeh.js' %}"></script>
+{% endblock js_alani %}
+
+{% block orta_alan %}  
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center mt-3 mb-3"><h4 class="border-bottom border-dark pb-1">Kredi Kartları</h4></div>
+
+        <div class="col-12">
+            <div class="row">
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-3 fw-bold">Sahibi</div>
+                        <div class="col-3 fw-bold">Adı</div>
+                        <div class="col-3 fw-bold">Toplam Borç</div>
+                        <div class="col-3 fw-bold">Son Güncelleme</div>
+                    </div>
+                </div>
+                <div class="col-2 fw-bold">Detay</div>
+            </div>
+        </div>
+
+        {% for entry in kartlar %}
+        <div class="col-12 mt-3 border border-dark">
+            <div class="row">
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-3 border">{{ entry.sahibi }}</div>
+                        <div class="col-3 border">{{ entry.kategori }}</div>
+                        <div class="col-3 border">{{ entry.toplam_borç }}</div>
+                        <div class="col-3 border">{{ entry.güncelleme_tarihi }}</div>
+                    </div>
+                </div>
+                <a class="col-2 text-dark fw-bold" href="{% url 'kart_detay' sahibi=entry.sahibi kategori=entry.kategori %}">Detay</a>
+            </div>
+        </div>
+        {% endfor %}
+
+        <a href="http://127.0.0.1:8000/admin/wejegeh/kartlar/add/" class="col-12 mt-2 btn btn-primary">Yeni Kart Ekle</a>
+
+    </div>
+</div>
+{% endblock orta_alan %}

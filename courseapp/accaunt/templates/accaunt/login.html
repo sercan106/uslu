@@ -1,0 +1,39 @@
+{% extends 't_wejegeh.html' %}
+{% load static %}
+{% block title %}<title>Program</title>{% endblock title %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock css_files %}
+    
+{% block js_alani %}  <script src="{% static 'js/mywejegeh.js' %}"></script>{% endblock js_alani %}
+
+{% block orta_alan %}  
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2>Giriş</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Kullanıcı Adı:</label>
+                    <input type="text" name="username" id="username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password">Şifre:</label>
+                    <input type="password" name="password" id="password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Giriş</button>
+            </form>
+
+            {% if error %}
+                <div class="alert alert-danger mt-3">
+                    {{ error }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock orta_alan %}

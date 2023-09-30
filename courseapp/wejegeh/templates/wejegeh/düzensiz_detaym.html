@@ -1,0 +1,34 @@
+{% extends 't_wejegeh.html' %}
+{% load static %}
+{% block title %}<title>Mihenk taşı</title>{% endblock title %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock css_files %}
+    
+{% block js_alani %}  <script src="{% static 'js/mywejegeh.js' %}"></script>{% endblock js_alani %}
+
+{% block orta_alan %}  
+
+{% for i in veri %}
+<div class="row mt-3 border border-dark bg-light">
+    <div class="col-3 fw-bold">{{i.kategori}}</div>
+    <div class="col-3 ">{{i.tutar}}</div>
+    <div class="col-3 ">{{i.ödemeson}}</div>
+    <div class="col-3 ">
+         {% if i.ödendimi %}
+            Ödendi
+        {% else %}
+            Ödenmedi
+        {% endif %}
+    </div>
+    <div class="col-12 pt-3 border">{{i.notekle}}</div>
+   
+
+</div>
+
+{% endfor %}
+
+{% endblock orta_alan %}
+
+

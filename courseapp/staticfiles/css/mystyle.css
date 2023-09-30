@@ -1,0 +1,18 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    /* font-size: large; Üzerine gelindiğinde büyük yazı boyutu */
+    color: rgb(110, 4, 4);
+}
+
+
+
+
+
+/* Input elementine tıklandığında datalist'in arka plan rengini sarı yap */
+input[list="browsers"]:focus + datalist {
+    background-color: yellow;
+}
